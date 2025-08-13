@@ -35,7 +35,7 @@ const Navbar = () => {
         <Link href='/' className=''>
           <IconShoppingCart stroke={2} />
         </Link>
-        <Link href='/login' className='flex items-center gap-2'>
+        <Link href='/login' className='flex items-center gap-2 link link-hover'>
           Sign In
         </Link>
       </div>

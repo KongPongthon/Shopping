@@ -4,9 +4,9 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className='footer sm:footer-horizontal bg-base-200 text-base-content p-10'>
+    <footer className='footer sm:footer-horizontal bg-base-200 text-base-content p-10 text-black'>
       <aside>
-        <svg
+        {/* <svg
           width='50'
           height='50'
           viewBox='0 0 24 24'
@@ -21,9 +21,20 @@ const Footer = () => {
           ACME Industries Ltd.
           <br />
           Providing reliable tech since 1992
+        </p> */}
+        <Image
+          src='/next.svg'
+          alt='logo'
+          width={100}
+          height={100}
+          className='w-6 h-6 md:w-9 md:h-9'
+        />
+        <p className='hidden md:block text-md font-medium tracking-wider'>
+          Landdokmai <br />
+          Providing reliable tech since 1992
         </p>
       </aside>
-      <nav>
+      <nav className='w-full '>
         <h6 className='footer-title'>Services</h6>
         <Link href='/' className='link link-hover'>
           Branding
@@ -38,8 +49,8 @@ const Footer = () => {
           Advertisement
         </Link>
       </nav>
-      <nav>
-        <h6 className='footer-title'>Company</h6>
+      <nav className='w-full'>
+        <h6 className='footer-title w-full'>Company</h6>
         <Link href='#' className='link link-hover'>
           About us
         </Link>
@@ -53,7 +64,7 @@ const Footer = () => {
           Press kit
         </Link>
       </nav>
-      <nav>
+      <nav className='w-full'>
         <h6 className='footer-title'>Legal</h6>
         <Link href='#' className='link link-hover'>
           Terms of use

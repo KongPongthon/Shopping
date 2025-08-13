@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@splinetool/react-spline": "^4.1.0",
     "@tabler/icons-react": "^3.34.1",
     "daisyui": "^5.0.50",
     "next": "15.4.5",
