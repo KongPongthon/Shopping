@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, cupcake;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('./assets/Prompt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Prompt', sans-serif;
+}
