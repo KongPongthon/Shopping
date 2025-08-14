@@ -6,6 +6,7 @@ const productController = require('../../controllers/product.controller');
 const routerUser = Router();
 
 routerUser.post('/createtest', productController.createProduct);
-// หรือ User.post('/createtest', Product.createProduct);
+
+routerUser.get('/gettest', productController.getProducts);
 
 export default routerUser;

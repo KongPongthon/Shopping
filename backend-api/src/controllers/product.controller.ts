@@ -15,7 +15,16 @@ const createProduct = async (
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    await db
+    // await db
+    //   .insert(products)
+    //   .values({
+    //     name,
+    //     description: description || '',
+    //     price,
+    //     stock,
+    //   })
+    //   .run();
+    const result = await db
       .insert(products)
       .values({
         name,
@@ -23,8 +32,8 @@ const createProduct = async (
         price,
         stock,
       })
-      .run();
-
+      .returning();
+    console.log('result:', result);
     return res.status(201).json({ message: 'Product created successfully' });
   } catch (err) {
     console.error('Error:', err);
@@ -32,5 +41,15 @@ const createProduct = async (
   }
 };
 
+const getProducts = async (req: Request, res: Response) => {
+  try {
+    const getproduct = await db.select().from(products);
+    return res.status(200).json(getproduct);
+  } catch (err) {
+    console.error('Error:', err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 // หรือ export แบบ default object
-export { createProduct };
+export { createProduct, getProducts };

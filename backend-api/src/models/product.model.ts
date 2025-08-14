@@ -1,8 +1,12 @@
+import { sql } from 'drizzle-orm';
 import { sqliteTable, integer, text, int } from 'drizzle-orm/sqlite-core';
-
+import { createId } from '@paralleldrive/cuid2';
 // Schema ของ table products
- const products = sqliteTable('products', {
-  id: integer().primaryKey({ autoIncrement: true }),
+const products = sqliteTable('products', {
+  // id: integer().primaryKey({ autoIncrement: true }),
+  id: text()
+    .primaryKey()
+    .$defaultFn(() => createId()),
   name: text().notNull(),
   description: text(),
   price: int().notNull(),
@@ -10,7 +14,9 @@ import { sqliteTable, integer, text, int } from 'drizzle-orm/sqlite-core';
 });
 export default products;
 // Explicit Type สำหรับ insert
+
 export type ProductInsert = {
+  id?: string;
   name: string;
   description?: string;
   price: number;
