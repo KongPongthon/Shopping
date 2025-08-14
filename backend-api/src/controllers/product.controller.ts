@@ -2,6 +2,7 @@
 import { Request, Response } from 'express';
 import products, { ProductInsert } from '../models/product.model';
 import db from '../config/db';
+import { getIO } from '../socket';
 
 const createProduct = async (
   req: Request<{}, {}, ProductInsert>,
@@ -34,6 +35,10 @@ const createProduct = async (
       })
       .returning();
     console.log('result:', result);
+
+    // ส่งข้อมูลไปยังทุก client ผ่าน socket
+    getIO().emit('product:created', result[0]);
+
     return res.status(201).json({ message: 'Product created successfully' });
   } catch (err) {
     console.error('Error:', err);
@@ -44,6 +49,7 @@ const createProduct = async (
 const getProducts = async (req: Request, res: Response) => {
   try {
     const getproduct = await db.select().from(products);
+    console.log('getproduct:', getproduct);
     return res.status(200).json(getproduct);
   } catch (err) {
     console.error('Error:', err);

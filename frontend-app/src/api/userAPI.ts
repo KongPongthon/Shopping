@@ -1,11 +1,25 @@
-import { baseUrlNoCredential } from './baseUrl';
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+}
 
-const getProducts = async () => {
+const getProducts = async (): Promise<Product[]> => {
   try {
-    const response = await baseUrlNoCredential.get('/user/gettest');
-    return response.data;
+    // const response = await fetch('http://localhost:8000/api/v1/user/gettest');
+    const response = await fetch('http://localhost:8000/api/v1/user/gettest', {
+      cache: 'no-store', // ป้องกัน cache ใน SSR
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    return data;
   } catch (err) {
     console.error('Error:', err);
+    throw err;
   }
 };
 

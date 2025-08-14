@@ -3,7 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import main from './routes/main.routes';
 import db from './config/db';
-
+import { createServer } from 'http';
+import { initSocket } from './socket';
 const app = express();
 
 // เพิ่ม CORS
@@ -16,14 +17,6 @@ app.use(
 );
 
 app.use(express.json());
-
-// เพิ่ม logging middleware
-// app.use((req, res, next) => {
-//   console.log(`${req.method} ${req.path}`, req.body);
-//   next();
-// });
-
-// Test route
 app.get('/test', (req, res) => {
   res.json({ message: 'Backend is working!' });
 });
@@ -40,7 +33,16 @@ async function checkDB() {
 }
 
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, async () => {
+// app.listen(PORT, async () => {
+//   console.log(`🚀 Server running on http://localhost:${PORT}`);
+//   console.log(`📝 API available at http://localhost:${PORT}/api/v1`);
+//   await checkDB();
+// });
+
+const httpServer = createServer(app);
+initSocket(httpServer);
+
+httpServer.listen(PORT, async () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`📝 API available at http://localhost:${PORT}/api/v1`);
   await checkDB();
