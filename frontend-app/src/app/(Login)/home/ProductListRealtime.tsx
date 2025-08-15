@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import useSocket from '@/app/hooks/useSocket';
 import Image from 'next/image';
 import CardProduct from '@/app/components-ui/CardProduct';
+import { CardProductTypes } from '@/types/product';
 interface Product {
   id: number;
   name: string;
@@ -37,11 +38,35 @@ export default function ProductListRealtime({ initialProducts }: Props) {
   return (
     <ul>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15 h-full justify-items-center'>
-        {products.map((p) => (
-          <li key={p.id}>
-            <CardProduct />
-          </li>
-        ))}
+        {products.map((p) => {
+          // console.log('p:', p);
+          const cardProductItem: CardProductTypes = {
+            id: p.id.toString(),
+            name: p.name,
+            description: p.description,
+            price: p.price,
+            // stock: p.stock,
+            color: [
+              {
+                color: '#000',
+                amount: 1,
+              },
+              {
+                color: '#ffff',
+                amount: 1,
+              },
+              {
+                color: '#ff0000',
+                amount: 0,
+              },
+            ],
+          };
+          return (
+            <li key={p.id}>
+              <CardProduct item={cardProductItem} />
+            </li>
+          );
+        })}
       </div>
     </ul>
   );
