@@ -16,22 +16,22 @@ export default function RootLayout({
   return (
     <html data-theme='cupcake'>
       <body className={` antialiased`}>
-        <div className='relative h-screen min-h-screen overflow-hidden'>
+        <div className='relative min-h-screen overflow-scroll bg-gradient-to-b from-white via-gray-200 to-gray-700'>
           {/* Spline เป็นพื้นหลัง */}
-          <div className='absolute inset-0 -z-10 bg-gradient-to-b from-gray-700 via-gray-800 to-gray-900'>
-            {/* <div className='absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-400 to-gray-700'> */}
-            <Spline
+          {/* <div className='absolute inset-0 -z-10 bg-gradient-to-b from-gray-700 via-gray-800 to-gray-900'> */}
+          {/* <div className='absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-200 to-gray-700 h-screen'> */}
+          {/* <Spline
               scene='https://prod.spline.design/Y0SRga7xpB5JFiIb/scene.splinecode'
               className='w-full h-full scale-[1.04] origin-top' // ให้ยาวกว่า 100% ของจอ
-            />
-            {/* <Spline
+            /> */}
+          {/* <Spline
               scene='https://prod.spline.design/V3P-lvcxXR5VBrws/scene.splinecode'
               className='w-full h-full scale-[1.04] origin-top'
             /> */}
-          </div>
+          {/* </div> */}
 
           {/* เนื้อหาอยู่ข้างหน้า */}
-          <div className='relative flex flex-col gap-8 mx-auto p-4 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-6xl h-full'>
+          <div className='relative flex flex-col gap-8 mx-auto p-4 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-6xl overflow-hidden'>
             <Navbar />
             <div className='flex-1'>{children}</div>
             <Footer />

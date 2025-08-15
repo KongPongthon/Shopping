@@ -3,14 +3,23 @@ import React from 'react';
 import Create from './create/page';
 import Link from 'next/link';
 import ProductListRealtime from './ProductListRealtime';
+import Image from 'next/image';
 const Home = async () => {
   const initialProducts = await getProducts();
   return (
     <div>
+      <div className='relative aspect-[3/1] mb-12'>
+        <Image
+          src='/featured.png'
+          alt='featured Product'
+          width={1000}
+          height={1000}
+        />
+        {/* <button onClick={test} name='test' className='btn btn-primary bg-black' /> */}
+        {/* <CustomInput label='Email' value='' placeholder='Email' name='email' /> */}
+        {/* <Create /> */}
+      </div>
       <ProductListRealtime initialProducts={initialProducts} />
-      {/* <button onClick={test} name='test' className='btn btn-primary bg-black' /> */}
-      {/* <CustomInput label='Email' value='' placeholder='Email' name='email' /> */}
-      <Create />
     </div>
   );
 };
