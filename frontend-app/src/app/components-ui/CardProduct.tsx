@@ -3,6 +3,7 @@ import { IconShoppingCart } from '@tabler/icons-react';
 import Image from 'next/image';
 import React from 'react';
 import { cn } from '../lib/cn';
+import Link from 'next/link';
 
 interface Props {
   item: CardProductTypes;
@@ -17,13 +18,15 @@ const CardProduct: React.FC<Props> = ({ item }) => {
         src='https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp'
         alt='Shoes'
       /> */}
-        <Image
-          src='/test1.png'
-          alt='Product'
-          height={400}
-          width={400}
-          className='bg-cover'
-        />
+        <Link href={`/home/id=${item?.id}`}>
+          <Image
+            src='/test1.png'
+            alt='Product'
+            height={400}
+            width={400}
+            className='bg-cover'
+          />
+        </Link>
       </figure>
       <div className='card-body'>
         <div className='flex gap-2'>

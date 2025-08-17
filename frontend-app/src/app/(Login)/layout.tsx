@@ -7,8 +7,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html data-theme='cupcake'>
-      <body className={` antialiased`}>{children}</body>
-    </html>
+    <div>
+      {/* <body className={`antialiased`}>{children}</body> */}
+      <div className='relative flex flex-col gap-8 mx-auto p-4 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-6xl overflow-hidden'>
+        <Navbar />
+        <div className='flex-1'>{children}</div>
+        <Footer />
+      </div>
+    </div>
   );
 }

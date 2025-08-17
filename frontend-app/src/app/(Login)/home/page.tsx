@@ -1,7 +1,5 @@
 import { getProducts } from '@/api/userAPI';
 import React from 'react';
-import Create from './create/page';
-import Link from 'next/link';
 import ProductListRealtime from './ProductListRealtime';
 import Image from 'next/image';
 const Home = async () => {
