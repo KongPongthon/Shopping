@@ -1,13 +1,10 @@
-import {
-  IconBell,
-  IconHome,
-  IconSearch,
-  IconShoppingCart,
-} from '@tabler/icons-react';
+import { IconHome } from '@tabler/icons-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import SearchBar from './SearchBar';
+import Shopping from './Menu/Shopping';
+import Notification from './Menu/Notification';
 
 const Navbar = () => {
   return (
@@ -29,12 +26,8 @@ const Navbar = () => {
         <Link href='/' className='flex items-center'>
           <IconHome stroke={2} />
         </Link>
-        <Link href='/' className=''>
-          <IconBell stroke={2} />
-        </Link>
-        <Link href='/' className=''>
-          <IconShoppingCart stroke={2} />
-        </Link>
+        <Notification />
+        <Shopping />
         <Link href='/login' className='flex items-center gap-2 link link-hover'>
           Sign In
         </Link>

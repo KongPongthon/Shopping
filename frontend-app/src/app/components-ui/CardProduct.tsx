@@ -11,6 +11,14 @@ interface Props {
 
 const CardProduct: React.FC<Props> = ({ item }) => {
   console.log('item', item);
+
+  const tooltips = (data: string | undefined) => {
+    if (!data) return '';
+    const maxLength = 80;
+    const truncatedText =
+      data.length > maxLength ? data.slice(0, maxLength) + '...' : data;
+    return truncatedText;
+  };
   return (
     <div className='card bg-base-100 w-84 shadow-sm text-black'>
       <figure className='bg-gray-200'>
@@ -52,9 +60,11 @@ const CardProduct: React.FC<Props> = ({ item }) => {
         </div>
         <div>{item.category}</div>
         <h2 className='card-title'>{item.title || 'test'}</h2>
-        <p>{item.description}</p>
+        <p className='tooltip' data-tip={item.description}>
+          {tooltips(item?.description)}
+        </p>
         <div className='card-actions justify-between items-center'>
-          <div className='text-xl'>${item?.price}</div>
+          <div className='text-xl'>${item?.price?.toFixed(2)}</div>
           <button className='btn btn-primary bg-black border-black text-white'>
             <IconShoppingCart stroke={2} /> Add to Cart
           </button>

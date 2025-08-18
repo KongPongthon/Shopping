@@ -25,19 +25,19 @@ const createProduct = async (
     //     stock,
     //   })
     //   .run();
-    const result = await db
-      .insert(products)
-      .values({
-        name,
-        description: description || '',
-        price,
-        stock,
-      })
-      .returning();
-    console.log('result:', result);
+    // const result = await db
+    //   .insert(products)
+    //   .values({
+    //     name,
+    //     description: description || '',
+    //     price,
+    //     stock,
+    //   })
+    //   .returning();
+    // console.log('result:', result);
 
-    // ส่งข้อมูลไปยังทุก client ผ่าน socket
-    getIO().emit('product:created', result[0]);
+    // // ส่งข้อมูลไปยังทุก client ผ่าน socket
+    // getIO().emit('product:created', result[0]);
 
     return res.status(201).json({ message: 'Product created successfully' });
   } catch (err) {

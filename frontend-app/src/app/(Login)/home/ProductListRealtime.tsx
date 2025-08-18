@@ -1,9 +1,10 @@
-'use client';
-import { useEffect, useState } from 'react';
-import useSocket from '@/app/hooks/useSocket';
-import Image from 'next/image';
-import CardProduct from '@/app/components-ui/CardProduct';
-import { CardProductTypes } from '@/types/product';
+// 'use client';
+// import { useEffect, useState } from 'react';
+// import useSocket from '@/app/hooks/useSocket';
+// import Image from 'next/image';
+// import CardProduct from '@/app/components-ui/CardProduct';
+// import { CardProductTypes } from '@/types/product';
+import { getProducts } from '@/api/userAPI';
 interface Product {
   id: number;
   name: string;
@@ -15,59 +16,67 @@ interface Props {
   initialProducts: Product[];
 }
 
-export default function ProductListRealtime({ initialProducts }: Props) {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
-  const socket = useSocket(); // type: Socket | null
+const ProductListRealtime = async () => {
+  const initialProducts = await getProducts();
 
-  useEffect(() => {
-    if (!socket) return; // ถ้า null → ออกจาก useEffect
+  // const [products, setProducts] = useState<Product[]>([]);
 
-    const handleProductCreated = (product: Product) => {
-      setProducts((prev) => [...prev, product]);
-    };
+  // const socket = useSocket(); // type: Socket | null
 
-    socket.on('product:created', handleProductCreated);
+  // useEffect(() => {
+  //   if (!socket) return; // ถ้า null → ออกจาก useEffect
 
-    return () => {
-      socket.off('product:created', handleProductCreated); // cleanup
-    };
-  }, [socket]);
+  //   const handleProductCreated = (product: Product) => {
+  //     setProducts((prev) => [...prev, product]);
+  //   };
+
+  //   socket.on('product:created', handleProductCreated);
+
+  //   return () => {
+  //     socket.off('product:created', handleProductCreated); // cleanup
+  //   };
+  // }, [socket]);
 
   // console.log('products', products);
 
   return (
+    // <ul>
+    //   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-15 h-full justify-items-center'>
+    //     {products.map((p) => {
+    //       // console.log('p:', p);
+    //       const cardProductItem: CardProductTypes = {
+    //         id: p.id.toString(),
+    //         name: p.name,
+    //         description: p.description,
+    //         price: p.price,
+    //         // stock: p.stock,
+    //         color: [
+    //           {
+    //             color: '#000',
+    //             amount: 1,
+    //           },
+    //           {
+    //             color: '#ffff',
+    //             amount: 1,
+    //           },
+    //           {
+    //             color: '#ff0000',
+    //             amount: 0,
+    //           },
+    //         ],
+    //       };
+    //       return (
+    //         <li key={p.id}>
+    //           <CardProduct item={cardProductItem} />
+    //         </li>
+    //       );
+    //     })}
+    //   </div>
+    // </ul>
     <ul>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-15 h-full justify-items-center'>
-        {products.map((p) => {
-          // console.log('p:', p);
-          const cardProductItem: CardProductTypes = {
-            id: p.id.toString(),
-            name: p.name,
-            description: p.description,
-            price: p.price,
-            // stock: p.stock,
-            color: [
-              {
-                color: '#000',
-                amount: 1,
-              },
-              {
-                color: '#ffff',
-                amount: 1,
-              },
-              {
-                color: '#ff0000',
-                amount: 0,
-              },
-            ],
-          };
-          return (
-            <li key={p.id}>
-              <CardProduct item={cardProductItem} />
-            </li>
-          );
-        })}
-      </div>
+      <div>ssss</div>
     </ul>
   );
-}
+};
+
+export default ProductListRealtime;
